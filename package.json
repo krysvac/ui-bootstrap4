@@ -1,9 +1,9 @@
 {
-  "author": "https://github.com/morgul/ui-bootstrap4/graphs/contributors",
-  "name": "ui-bootstrap4",
-  "version": "3.0.5",
-  "description": "Native AngularJS (Angular) directives for Bootstrap",
-  "homepage": "http://morgul.github.io/ui-bootstrap4/",
+  "author": "https://github.com/krysvac/ui-bootstrap4-fixed/graphs/contributors",
+  "name": "ui-bootstrap4-fixed",
+  "version": "4.0.0",
+  "description": "Native AngularJS (Angular) directives for Bootstrap 4",
+  "homepage": "http://krysvac.github.io/ui-bootstrap4-fixed/docs",
   "keywords": [
     "angularjs",
     "angular",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/morgul/ui-bootstrap4.git"
+    "url": "https://github.com/krysvac/ui-bootstrap4-fixed.git"
   },
   "devDependencies": {
     "angular": "1.6.1",
