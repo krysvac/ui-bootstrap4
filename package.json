@@ -10,9 +10,7 @@
     "bootstrap",
     "ui"
   ],
-  "dependencies": {
-    "npm": "^6.4.1"
-  },
+  "dependencies": {},
   "directories": {
     "lib": "src/"
   },
@@ -36,12 +34,12 @@
     "angular": "1.6.1",
     "angular-mocks": "1.6.1",
     "angular-sanitize": "1.6.1",
-    "eslint": "^4.7.2",
-    "eslint-loader": "^1.9.0",
+    "eslint": "^5.8.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "grunt": "^1.0.3",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^1.0.0",
