@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         ngversion: '1.6.1',
         bsversion: '4.0.0',
-        modules: [],//to be filled in by build task
+        modules: [], // to be filled in by build task
         pkg: grunt.file.readJSON('package.json'),
         dist: 'dist',
         filename: 'ui-bootstrap',
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
                     banner: '<%= meta.banner %><%= meta.modules %>\n',
                     footer: '<%= meta.cssInclude %>'
                 },
-                src: [], //src filled in by build task
+                src: [], // src filled in by build task
                 dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
             },
             dist_tpls: {
@@ -60,14 +60,14 @@ module.exports = function(grunt) {
                     banner: '<%= meta.banner %><%= meta.all %>\n<%= meta.tplmodules %>\n',
                     footer: '<%= meta.cssInclude %>'
                 },
-                src: [], //src filled in by build task
+                src: [], // src filled in by build task
                 dest: '<%= dist %>/<%= filename %>-tpls-<%= pkg.version %>.js'
             }
         },
         copy: {
             demohtml: {
                 options: {
-                    //process html files with gruntfile config
+                    // process html files with gruntfile config
                     processContent: grunt.template.process
                 },
                 files: [
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        //Don't re-copy html files, we process those
+                        // Don't re-copy html files, we process those
                         src: ['**/**/*', '!**/*.html'],
                         cwd: 'misc/demo',
                         dest: 'dist/'
@@ -177,8 +177,8 @@ module.exports = function(grunt) {
             }
         },
         shell: {
-            //We use %version% and evaluate it at run-time, because <%= pkg.version %>
-            //is only evaluated once
+            // We use %version% and evaluate it at run-time, because <%= pkg.version %>
+            // is only evaluated once
             'release-prepare': [
                 'git add docs'
             ],
@@ -202,13 +202,13 @@ module.exports = function(grunt) {
         }
     });
 
-    //register before and after test tasks so we've don't have to change cli
-    //options on the google's CI server
-    grunt.registerTask('before-test', [/*'ddescribe-iit',*/ 'eslint', 'html2js']);
+    // register before and after test tasks so we've don't have to change cli
+    // options on the google's CI server
+    grunt.registerTask('before-test', ['eslint', 'html2js']);
     grunt.registerTask('after-test', ['build', 'copy']);
 
-    //Rename our watch task to 'delta', then make actual 'watch'
-    //task build things, then start test server
+    // Rename our watch task to 'delta', then make actual 'watch'
+    // task build things, then start test server
     grunt.renameTask('watch', 'delta');
     grunt.registerTask('watch', ['before-test', 'after-test', 'karma:watch', 'delta']);
 
@@ -218,37 +218,33 @@ module.exports = function(grunt) {
     // Build docs
     grunt.registerTask('docs', ['before-test', 'after-test', 'copy:docs']);
 
-    //Common ui.bootstrap module containing all modules for src and templates
-    //findModule: Adds a given module to config
+    // Common ui.bootstrap module containing all modules for src and templates
+    // findModule: Adds a given module to config
     const foundModules = {};
 
-    function findModule(name)
-    {
-        if(foundModules[name])
-        { return; }
+    function findModule(name) {
+        if (foundModules[name]) {
+            return;
+        }
         foundModules[name] = true;
 
-        function breakup(text, separator)
-        {
+        function breakup(text, separator) {
             return text.replace(/[A-Z]/g, function(match) {
                 return separator + match;
             });
         }
 
-        function ucwords(text)
-        {
+        function ucwords(text) {
             return text.replace(/^([a-z])|\s+([a-z])/g, function($1) {
                 return $1.toUpperCase();
             });
         }
 
-        function enquote(str)
-        {
+        function enquote(str) {
             return `"${str}"`;
         }
 
-        function enquoteUibDir(str)
-        {
+        function enquoteUibDir(str) {
             return enquote(`uib/${str}`);
         }
 
@@ -277,8 +273,7 @@ module.exports = function(grunt) {
             js: []
         };
         module.cssFiles.forEach(processCSS.bind(null, module.name, styles, true));
-        if(styles.css.length)
-        {
+        if (styles.css.length) {
             module.css = styles.css.join('\n');
             module.cssJs = styles.js.join('\n');
         }
@@ -287,26 +282,23 @@ module.exports = function(grunt) {
         grunt.config('modules', grunt.config('modules').concat(module));
     }
 
-    function dependenciesForModule(name)
-    {
+    function dependenciesForModule(name) {
         let deps = [];
         grunt.file.expand([`src/${name}/*.js`, `!src/${name}/index.js`, `!src/${name}/index-nocss.js`])
             .map(grunt.file.read)
             .forEach(function(contents) {
-                //Strategy: find where module is declared,
-                //and from there get everything inside the [] and split them by comma
+                // Strategy: find where module is declared,
+                // and from there get everything inside the [] and split them by comma
                 const moduleDeclIndex = contents.indexOf('angular.module(');
                 const depArrayStart = contents.indexOf('[', moduleDeclIndex);
                 const depArrayEnd = contents.indexOf(']', depArrayStart);
                 const dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
                 dependencies.split(',').forEach(function(dep) {
-                    if(dep.indexOf('ui.bootstrap.') > -1)
-                    {
+                    if (dep.indexOf('ui.bootstrap.') > -1) {
                         const depName = dep.trim().replace('ui.bootstrap.', '').replace(/['"]/g, '');
-                        if(deps.indexOf(depName) < 0)
-                        {
+                        if (deps.indexOf(depName) < 0) {
                             deps.push(depName);
-                            //Get dependencies for this new dependency
+                            // Get dependencies for this new dependency
                             deps = deps.concat(dependenciesForModule(depName));
                         }
                     }
@@ -317,21 +309,19 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dist', 'Override dist directory', function() {
         const dir = this.args[0];
-        if(dir)
-        { grunt.config('dist', dir); }
+        if (dir) {
+            grunt.config('dist', dir);
+        }
     });
 
     grunt.registerTask('build', 'Create bootstrap build files', function() {
         const _ = grunt.util._;
 
-        //If arguments define what modules to build, build those. Else, everything
-        if(this.args.length)
-        {
+        // If arguments define what modules to build, build those. Else, everything
+        if (this.args.length) {
             this.args.forEach(findModule);
             grunt.config('filename', grunt.config('filenamecustom'));
-        }
-        else
-        {
+        } else {
             grunt.file.expand({
                 filter: 'isDirectory', cwd: '.'
             }, 'src/*').forEach((dir) => {
@@ -345,18 +335,19 @@ module.exports = function(grunt) {
         grunt.config('demoModules', modules
             .filter((module) => module.docs.md && module.docs.js && module.docs.html)
             .sort((a, b) => {
-                if(a.name < b.name)
-                { return -1; }
-                if(a.name > b.name)
-                { return 1; }
+                if (a.name < b.name) {
+                    return -1;
+                }
+                if (a.name > b.name) {
+                    return 1;
+                }
                 return 0;
             })
         );
 
         const cssStrings = _.flatten(_.compact(_.pluck(modules, 'css')));
         const cssJsStrings = _.flatten(_.compact(_.pluck(modules, 'cssJs')));
-        if(cssStrings.length)
-        {
+        if (cssStrings.length) {
             grunt.config('meta.cssInclude', cssJsStrings.join('\n'));
 
             grunt.file.write(grunt.config('meta.cssFileDest'), grunt.config('meta.cssFileBanner') +
@@ -372,10 +363,10 @@ module.exports = function(grunt) {
 
         const srcFiles = _.pluck(modules, 'srcFiles');
         const tpljsFiles = _.pluck(modules, 'tpljsFiles');
-        //Set the concat task to concatenate the given src modules
+        // Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src')
             .concat(srcFiles));
-        //Set the concat-with-templates task to concat the given src & tpl modules
+        // Set the concat-with-templates task to concat the given src & tpl modules
         grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
             .concat(srcFiles).concat(tpljsFiles));
 
@@ -383,19 +374,15 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('test', 'Run tests on singleRun karma server', function() {
-        //this task can be executed in 3 different environments: local, Travis-CI and Jenkins-CI
-        //we need to take settings for each one into account
-        if(process.env.TRAVIS)
-        {
+        // this task can be executed in 3 different environments: local, Travis-CI and Jenkins-CI
+        // we need to take settings for each one into account
+        if (process.env.TRAVIS) {
             grunt.task.run('karma:travis');
-        }
-        else
-        {
-            const isToRunJenkinsTask = !!this.args.length;
-            if(grunt.option('coverage'))
-            {
-                const karmaOptions = grunt.config.get('karma.options'),
-                    coverageOpts = grunt.config.get('karma.coverage');
+        } else {
+            if (grunt.option('coverage')) {
+                const karmaOptions = grunt.config.get('karma.options');
+
+                const coverageOpts = grunt.config.get('karma.coverage');
                 grunt.util._.extend(karmaOptions, coverageOpts);
                 grunt.config.set('karma.options', karmaOptions);
             }
@@ -430,7 +417,11 @@ module.exports = function(grunt) {
 
         const versionsMappingFile = 'dist/versions-mapping.json';
 
-        exec('git tag --sort -version:refname', function(error, stdout, stderr) {
+        exec('git tag --sort -version:refname', function(error, stdout) {
+            if (error) {
+                console.log(error.stack);
+            }
+
             // Let's remove the oldest 14 versions.
             const versions = stdout.split('\n').slice(0, -14);
             let jsContent = versions.map(function(version) {
@@ -449,58 +440,55 @@ module.exports = function(grunt) {
             grunt.log.writeln(`File ${versionsMappingFile.cyan} created.`);
             done();
         });
-
     });
 
     /**
      * Logic from AngularJS
      * https://github.com/angular/angular.js/blob/36831eccd1da37c089f2141a2c073a6db69f3e1d/lib/grunt/utils.js#L121-L145
      */
-    function processCSS(moduleName, state, minify, file)
-    {
-        let css = fs.readFileSync(file).toString(),
-            js;
+    function processCSS(moduleName, state, minify, file) {
+        let css = fs.readFileSync(file).toString();
+
+        let js;
         state.css.push(css);
 
-        if(minify)
-        {
+        if (minify) {
             css = css
                 .replace(/\r?\n/g, '')
                 .replace(/\/\*.*?\*\//g, '')
                 .replace(/:\s+/g, ':')
                 .replace(/\s*\{\s*/g, '{')
                 .replace(/\s*\}\s*/g, '}')
-                .replace(/\s*\,\s*/g, ',')
-                .replace(/\s*\;\s*/g, ';');
+                .replace(/\s*,\s*/g, ',')
+                .replace(/\s*;\s*/g, ';');
         }
-        //escape for js
+        // escape for js
         css = css
             .replace(/\\/g, '\\\\')
-            .replace(/'/g, "\\'")
+            .replace(/'/g, '\\\'')
             .replace(/\r?\n/g, '\\n');
-        js = `angular.module('ui.bootstrap.${moduleName}').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uib${_.capitalize(
-            moduleName)}Css && angular.element(document).find('head').prepend('<style type="text/css">${css}</style>'); angular.$$uib${_.capitalize(
-            moduleName)}Css = true; });`;
+        js = `angular.module('ui.bootstrap.${moduleName}').run(function() {!angular.$$csp().noInlineStyle && 
+        !angular.$$uib${_.capitalize(
+        moduleName)}Css && angular.element(document).find('head').prepend('<style type="text/css">${css}</style>');
+        angular.$$uib${_.capitalize(
+        moduleName)}Css = true; });`;
         state.js.push(js);
 
         return state;
     }
 
-    function setVersion(type, suffix)
-    {
+    function setVersion(type, suffix) {
         const file = 'package.json';
-        const VERSION_REGEX = /([\'|\"]version[\'|\"][ ]*:[ ]*[\'|\"])([\d|.]*)(-\w+)*([\'|\"])/;
+        const VERSION_REGEX = /(['|"]version['|"][ ]*:[ ]*['|"])([\d|.]*)(-\w+)*(['|"])/;
         let contents = grunt.file.read(file);
         let version;
         contents = contents.replace(VERSION_REGEX, function(match, left, center) {
             version = center;
-            if(type)
-            {
+            if (type) {
                 version = require('semver').inc(version, type);
             }
-            //semver.inc strips our suffix if it existed
-            if(suffix)
-            {
+            // semver.inc strips our suffix if it existed
+            if (suffix) {
                 version += '-' + suffix;
             }
             return left + version + '"';
@@ -520,17 +508,16 @@ module.exports = function(grunt) {
         self.data.forEach(function(cmd) {
             cmd = cmd.replace('%version%', grunt.file.readJSON('package.json').version);
             grunt.log.ok(cmd);
-            const result = sh.exec(cmd, { silent: true });
-            if(result.code !== 0)
-            {
+            const result = sh.exec(cmd, {silent: true});
+            if (result.code !== 0) {
                 grunt.fatal(result.output);
             }
         });
     });
 
-    //------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------
     // New Release System
-    //------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------
 
     grunt.registerTask('release', function(version) {
         // Step 1, we change package.json
@@ -549,7 +536,7 @@ module.exports = function(grunt) {
         ]);
     });
 
-    //------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------------------
 
     return grunt;
 };
