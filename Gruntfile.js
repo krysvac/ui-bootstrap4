@@ -156,7 +156,7 @@ module.exports = function(grunt) {
                 singleRun: true,
                 autoWatch: false,
                 reporters: ['dots'],
-                browsers: ['Chrome', 'Firefox']
+                browsers: ['Firefox']
             },
             coverage: {
                 preprocessors: {
