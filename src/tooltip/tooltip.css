@@ -46,15 +46,15 @@
 [uib-popover-template-popup].popover.left-bottom > .arrow,
 [uib-popover-template-popup].popover.right-top > .arrow,
 [uib-popover-template-popup].popover.right-bottom > .arrow {
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
-  margin: 0;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 0;
 }
 
 [uib-popover-popup].popover,
 [uib-popover-html-popup].popover,
 [uib-popover-template-popup].popover {
-  display: block !important;
+    display: block !important;
 }
