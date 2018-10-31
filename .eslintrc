@@ -2,20 +2,22 @@
     "parserOptions": {
         "ecmaVersion": 8,
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"
     },
     "env": {
         "es6": false,
-        "node": true
+        "node": true,
+        "jasmine": true
     },
     "plugins": [
         "import",
         "node",
         "promise",
-        "standard"
+        "standard",
+        "jasmine",
+        "angular"
     ],
     "globals": {
         "document": false,
@@ -27,7 +29,6 @@
         "getBlockNodes": false
     },
     "rules": {
-        "max-len": ["error", 120],
         "accessor-pairs": "error",
         "arrow-spacing": [
             "error",
@@ -178,13 +179,6 @@
         "no-irregular-whitespace": "error",
         "no-iterator": "error",
         "no-label-var": "error",
-        "no-labels": [
-            "error",
-            {
-                "allowLoop": false,
-                "allowSwitch": false
-            }
-        ],
         "no-lone-blocks": "error",
         "no-mixed-operators": [
             "warn",
@@ -251,7 +245,6 @@
         "no-this-before-super": "error",
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
-        "no-undef": "error",
         "no-undef-init": "error",
         "no-unexpected-multiline": "error",
         "no-unmodified-loop-condition": "error",
@@ -270,14 +263,6 @@
                 "allowShortCircuit": true,
                 "allowTernary": true,
                 "allowTaggedTemplates": true
-            }
-        ],
-        "no-unused-vars": [
-            "warn",
-            {
-                "vars": "all",
-                "args": "all",
-                "ignoreRestSiblings": true
             }
         ],
         "no-use-before-define": [
