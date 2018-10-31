@@ -7,11 +7,12 @@ describe('datepicker popup', function() {
     beforeEach(module('uib/template/datepicker/month.html'));
     beforeEach(module('uib/template/datepicker/year.html'));
     beforeEach(module('uib/template/datepickerPopup/popup.html'));
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$templateCache_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$templateCache_, _$sniffer_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $rootScope.date = new Date('September 30, 2010 15:30:00');
         $templateCache = _$templateCache_;
+        $sniffer = _$sniffer_;
     }));
 
     function getTitleButton() {
@@ -1336,9 +1337,10 @@ describe('datepicker popup', function() {
             $rootScope.date = new Date();
         });
 
-        afterEach(function() {
+        afterEach(inject(function(_$document_) {
+            $document = _$document_;
             $document.find('body').find('.dropdown-menu').remove();
-        });
+        }));
 
         it('should allow custom templates for the popup', function() {
             $templateCache.put('foo/bar.html', '<div>baz</div>');
@@ -1357,9 +1359,10 @@ describe('datepicker popup', function() {
             $rootScope.date = new Date();
         });
 
-        afterEach(function() {
+        afterEach(inject(function(_$document_) {
+            $document = _$document_;
             $document.find('body').find('.dropdown-menu').remove();
-        });
+        }));
 
         it('should allow custom templates for the datepicker', function() {
             $templateCache.put('foo/bar.html', '<div>baz</div>');
