@@ -12,35 +12,34 @@
 var fs = require('fs');
 
 function getFiles(filePaths) {
-  var files = {};
-  filePaths
-    .forEach(function (path) {
-      files[path] = fs.readFileSync(path, 'utf8');
-    });
-  return files;
+    var files = {};
+    filePaths
+        .forEach(function(path) {
+            files[path] = fs.readFileSync(path, 'utf8');
+        });
+    return files;
 }
 
 module.exports = function generateRawFilesJs(grunt, jsFilename, files, banner, cssBanner) {
-  if (!banner) {
-    banner = '';
-  }
+    if (!banner) {
+        banner = '';
+    }
 
-  if (!cssBanner) {
-    cssBanner = '';
-  }
+    if (!cssBanner) {
+        cssBanner = '';
+    }
 
-  var filesJsObject = {
-    banner: banner,
-    cssBanner: cssBanner,
-    files: getFiles(files),
-  };
+    var filesJsObject = {
+        banner: banner,
+        cssBanner: cssBanner,
+        files: getFiles(files)
+    };
 
-  var filesJsContent = JSON.stringify(filesJsObject);
-  try {
-    fs.writeFileSync(jsFilename, filesJsContent);
-  }
-  catch (err) {
-    grunt.fail.warn(err);
-  }
-  grunt.log.writeln('File ' + jsFilename.cyan + ' created.');
+    var filesJsContent = JSON.stringify(filesJsObject);
+    try {
+        fs.writeFileSync(jsFilename, filesJsContent);
+    } catch (err) {
+        grunt.fail.warn(err);
+    }
+    grunt.log.writeln('File ' + jsFilename.cyan + ' created.');
 };
