@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         ngversion: '1.6.1',
-        bsversion: '4.0.0',
+        bsversion: '4.1.3',
         modules: [], // to be filled in by build task
         pkg: grunt.file.readJSON('package.json'),
         dist: 'dist',
@@ -264,9 +264,21 @@ module.exports = function(grunt) {
                 js: grunt.file.expand(`src/${name}/docs/*.js`)
                     .map(grunt.file.read).join('\n'),
                 html: grunt.file.expand(`src/${name}/docs/*.html`)
-                    .map(grunt.file.read).join('\n')
+                    .map((res) => res).join('\n')
             }
         };
+
+        if (module.docs.md === null || module.docs.md === undefined) {
+            module.docs.md = '';
+        }
+
+        if (module.docs.js === null || module.docs.js === undefined) {
+            module.docs.js = '';
+        }
+
+        if (module.docs.html === null || module.docs.html === undefined) {
+            module.docs.html = '';
+        }
 
         const styles = {
             css: [],
@@ -330,8 +342,8 @@ module.exports = function(grunt) {
         }
 
         const modules = grunt.config('modules');
-        grunt.config('srcModules', _.pluck(modules, 'moduleName'));
-        grunt.config('tplModules', _.pluck(modules, 'tplModules').filter((tpls) => tpls.length > 0));
+        grunt.config('srcModules', _.map(modules, 'moduleName'));
+        grunt.config('tplModules', _.map(modules, 'tplModules').filter((tpls) => tpls.length > 0));
         grunt.config('demoModules', modules
             .filter((module) => module.docs.md && module.docs.js && module.docs.html)
             .sort((a, b) => {
@@ -345,8 +357,8 @@ module.exports = function(grunt) {
             })
         );
 
-        const cssStrings = _.flatten(_.compact(_.pluck(modules, 'css')));
-        const cssJsStrings = _.flatten(_.compact(_.pluck(modules, 'cssJs')));
+        const cssStrings = _.flatten(_.compact(_.map(modules, 'css')));
+        const cssJsStrings = _.flatten(_.compact(_.map(modules, 'cssJs')));
         if (cssStrings.length) {
             grunt.config('meta.cssInclude', cssJsStrings.join('\n'));
 
@@ -361,8 +373,8 @@ module.exports = function(grunt) {
 
         grunt.config('moduleFileMapping', moduleFileMapping);
 
-        const srcFiles = _.pluck(modules, 'srcFiles');
-        const tpljsFiles = _.pluck(modules, 'tpljsFiles');
+        const srcFiles = _.map(modules, 'srcFiles');
+        const tpljsFiles = _.map(modules, 'tpljsFiles');
         // Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src')
             .concat(srcFiles));
@@ -394,7 +406,7 @@ module.exports = function(grunt) {
         const _ = grunt.util._;
         const moduleMappingJs = 'dist/assets/module-mapping.json';
         const moduleMappings = grunt.config('moduleFileMapping');
-        const moduleMappingsMap = _.object(_.pluck(moduleMappings, 'name'), moduleMappings);
+        const moduleMappingsMap = _.zipObject(_.map(moduleMappings, 'name'), moduleMappings);
         const jsContent = JSON.stringify(moduleMappingsMap);
         grunt.file.write(moduleMappingJs, jsContent);
         grunt.log.writeln('File ' + moduleMappingJs.cyan + ' created.');
@@ -416,6 +428,10 @@ module.exports = function(grunt) {
         const exec = require('child_process').exec;
 
         const versionsMappingFile = 'dist/versions-mapping.json';
+
+        const modules = grunt.config('modules');
+
+        console.log(modules);
 
         exec('git tag --sort -version:refname', function(error, stdout) {
             if (error) {
