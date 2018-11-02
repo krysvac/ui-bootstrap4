@@ -184,8 +184,7 @@
                         * Some directives have a config service that follows the next pattern: <code>uibDirectiveConfig</code>. The service's settings use camel case. The services can be configured in a <code>.config</code> function for example.
                     </p>
                 </section>
-                <% demoModules.forEach(function(module) {
-                        if (module.docs === undefined) { module.docs = {}; } console.log(module.docs) %>
+                <% demoModules.forEach(function(module) { %>
                     <section id="<%= module.name %>">
                         <div class="page-header">
                           <h1><%= module.displayName %><small>

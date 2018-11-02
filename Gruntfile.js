@@ -315,8 +315,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', 'Create bootstrap build files', function() {
-        const _ = grunt.util._;
-
         // If arguments define what modules to build, build those. Else, everything
         if (this.args.length) {
             this.args.forEach(findModule);
@@ -330,10 +328,12 @@ module.exports = function(grunt) {
         }
 
         const modules = grunt.config('modules');
+        const demoModules = _.cloneDeep(modules);
+
         grunt.config('srcModules', _.map(modules, 'moduleName'));
         grunt.config('tplModules', _.map(modules, 'tplModules').filter((tpls) => tpls.length > 0));
-        grunt.config('demoModules', modules
-            .filter((module) => module.docs.md && module.docs.js && module.docs.html)
+        grunt.config('demoModules', demoModules
+            .filter((mod) => mod.docs.md && mod.docs.js && mod.docs.html)
             .sort((a, b) => {
                 if (a.name < b.name) {
                     return -1;
@@ -468,10 +468,9 @@ module.exports = function(grunt) {
             .replace(/'/g, '\\\'')
             .replace(/\r?\n/g, '\\n');
         js = `angular.module('ui.bootstrap.${moduleName}').run(function() {!angular.$$csp().noInlineStyle && 
-        !angular.$$uib${_.capitalize(
-        moduleName)}Css && angular.element(document).find('head').prepend('<style type="text/css">${css}</style>');
-        angular.$$uib${_.capitalize(
-        moduleName)}Css = true; });`;
+        !angular.$$uib${_.capitalize(moduleName)}Css && angular.element(document).find('head')
+        .prepend('<style type="text/css">${css}</style>');
+        angular.$$uib${_.capitalize(moduleName)}Css = true; });`;
         state.js.push(js);
 
         return state;
