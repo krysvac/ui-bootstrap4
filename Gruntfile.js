@@ -264,21 +264,9 @@ module.exports = function(grunt) {
                 js: grunt.file.expand(`src/${name}/docs/*.js`)
                     .map(grunt.file.read).join('\n'),
                 html: grunt.file.expand(`src/${name}/docs/*.html`)
-                    .map((res) => res).join('\n')
+                    .map(grunt.file.read).join('\n')
             }
         };
-
-        if (module.docs.md === null || module.docs.md === undefined) {
-            module.docs.md = '';
-        }
-
-        if (module.docs.js === null || module.docs.js === undefined) {
-            module.docs.js = '';
-        }
-
-        if (module.docs.html === null || module.docs.html === undefined) {
-            module.docs.html = '';
-        }
 
         const styles = {
             css: [],
@@ -428,10 +416,6 @@ module.exports = function(grunt) {
         const exec = require('child_process').exec;
 
         const versionsMappingFile = 'dist/versions-mapping.json';
-
-        const modules = grunt.config('modules');
-
-        console.log(modules);
 
         exec('git tag --sort -version:refname', function(error, stdout) {
             if (error) {
