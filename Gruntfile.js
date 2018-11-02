@@ -16,6 +16,9 @@ module.exports = function(grunt) {
         dist: 'dist',
         filename: 'ui-bootstrap',
         filenamecustom: '<%= filename %>-custom',
+        reponame: 'ui-bootstrap4-fixed',
+        accountname: 'krysvac',
+        pathToDocsFolder: 'tree/master/docs',
         meta: {
             modules: 'angular.module("ui.bootstrap", [<%= srcModules %>]);',
             tplmodules: 'angular.module("ui.bootstrap.tpls", [<%= tplModules %>]);',

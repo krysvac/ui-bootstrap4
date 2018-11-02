@@ -6,7 +6,6 @@
     <link rel="icon" href="assets/favicon.ico" />
     <title>Angular directives for Bootstrap 4</title>
     <meta name="description" content="AngularJS (Angular) native directives for Bootstrap 4. Small footprint (5kB gzipped!), no 3rd party JS dependencies (jQuery, bootstrap JS) required! Widgets: Accordion, Alert, Buttons, Carousel, Collapse, Dateparser, Datepicker, Datepicker Popup, Dropdown, Modal, Pager, Pagination, Popover, Position, Progressbar, Rating, Tabs, Timepicker, Tooltip, Typeahead, ">
-    <meta name="google-site-verification" content="7lc5HyceLDqpV_6oNHteYFfxDJH7-S3DwnJKtNUKcRg" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.0.0/FileSaver.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
@@ -21,12 +20,13 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/rainbow.css"/>
     <link rel="stylesheet" href="assets/demo.css"/>
-    <link rel="author" href="https://github.com/angular-ui/bootstrap/graphs/contributors">
+    <link rel="author" href="https://github.com/krysvac/ui-bootstrap4-fixed/graphs/contributors">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body class="ng-cloak" ng-controller="MainCtrl">
 <header class="navbar navbar-light sticky-top navbar-expand-md bg-light">
     <div class="container">
-        <a class="navbar-brand visible-xs" href="#">UI Bootstrap 4</a>
+        <a class="navbar-brand visible-xs" href="#">UI Bootstrap</a>
         <button type="button" class="navbar-toggler" ng-click="isCollapsed = !isCollapsed">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -64,29 +64,21 @@
             by the <a href="http://angular-ui.github.io">AngularUI Team</a>
         </p>
         <p class="text-center">
-            <small>Ported to Bootstrap 4 by <a href="https://github.com/Morgul">Morgul</a></small>
+            <small>Ported to Bootstrap 4 by <a href="https://github.com/Morgul">Morgul</a> and later updated by <a href="https://github.com/krysvac">krysvac</a></small>
         </p>
         <div class="container">
             <p>
-                <a class="btn btn-outline-inverse btn-lg" href="https://github.com/Morgul/ui-bootstrap4">
-                    <i class="icon-github"></i>
+                <a class="btn btn-outline-inverse btn-lg" href="https://github.com/krysvac/ui-bootstrap4-fixed">
+                    <i class="fab fa-github"></i>
                     Code on Github
                 </a>
                 <button type="button" class="btn btn-outline-inverse btn-lg" ng-click="showDownloadModal()">
 
-                    <i class="fa-svg-icon">
-                        <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1344 1344q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h465l135 136q58 56 136 56t136-56l136-136h464q40 0 68 28t28 68zm-325-569q17 41-14 70l-448 448q-18 19-45 19t-45-19l-448-448q-31-29-14-70 17-39 59-39h256v-448q0-26 19-45t45-19h256q26 0 45 19t19 45v448h256q42 0 59 39z"/>
-                        </svg>
-                    </i>
+                    <i class="fas fa-download"></i>
                     Download <small>(4.0.0)</small>
                 </button>
                 <button type="button" class="btn btn-outline-inverse btn-lg" ng-click="showBuildModal()">
-                    <i class="fa-svg-icon">
-                        <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M448 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm644-420l-682 682q-37 37-90 37-52 0-91-37l-106-108q-38-36-38-90 0-53 38-91l681-681q39 98 114.5 173.5t173.5 114.5zm634-435q0 39-23 106-47 134-164.5 217.5t-258.5 83.5q-185 0-316.5-131.5t-131.5-316.5 131.5-316.5 316.5-131.5q58 0 121.5 16.5t107.5 46.5q16 11 16 28t-16 28l-293 169v224l193 107q5-3 79-48.5t135.5-81 70.5-35.5q15 0 23.5 10t8.5 25z"/>
-                        </svg>
-                    </i>
+                    <i class="fas fa-wrench"></i>
                     Create a Build
                 </button>
             </p>
@@ -94,11 +86,11 @@
         <div class="bs-social container">
             <ul class="bs-social-buttons">
                 <li>
-                    <iframe src="//ghbtns.com/github-btn.html?user=morgul&repo=ui-bootstrap4&type=watch&count=true"
+                    <iframe src="//ghbtns.com/github-btn.html?user=krysvac&repo=ui-bootstrap4-fixed&type=watch&count=true"
                             allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
                 </li>
                 <li>
-                    <iframe src="//ghbtns.com/github-btn.html?user=morgul&repo=ui-bootstrap4&type=fork&count=true"
+                    <iframe src="//ghbtns.com/github-btn.html?user=krysvac&repo=ui-bootstrap4-fixed&type=fork&count=true"
                             allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
                 </li>
             </ul>
@@ -118,28 +110,25 @@
                         JavaScript is required. The <strong>only required dependencies</strong> are:
                     </p>
                     <ul>
-                        <li><a href="http://angularjs.org" target="_blank">AngularJS</a> (requires AngularJS 1.4.x or higher, tested with 1.6.1).
-                            0.14.3 is the last version of this library that supports AngularJS 1.3.x and
-                            0.12.0 is the last version that supports AngularJS 1.2.x.</li>
-                        <li><a href="http://angularjs.org" target="_blank">Angular-animate</a> (the version should match with your angular's, tested with 1.6.1) if you plan in using animations, you need to load angular-animate as well.</li>
-                        <li><a href="http://angularjs.org" target="_blank">Angular-touch</a> (the version should match with your angular's, tested with 1.6.1) if you plan in using swipe actions, you need to load angular-touch as well.</li>
-                        <li><a href="http://getbootstrap.com" target="_blank">Bootstrap CSS</a> (tested with version 4.1.3).
-                            This version of the library (4.0.0) works only with Bootstrap CSS in version 4.x.
-                            2.5.0 is the last version of this library that supports Bootstrap CSS in version 3.x.x.
-                            0.8.0 is the last version of this library that supports Bootstrap CSS in version 2.3.x.
+                        <li><a href="http://angularjs.org" target="_blank">AngularJS</a> (requires AngularJS 1.4.x or higher, tested with 1.6.1).</li>
+                        <li><a href="http://angularjs.org" target="_blank">Angular-animate</a> (the version should match with your angular's, tested with 1.6.1) if you plan on using animations, you need to load angular-animate as well.</li>
+                        <li><a href="http://angularjs.org" target="_blank">Angular-touch</a> (the version should match with your angular's, tested with 1.6.1) if you plan on using swipe actions, you need to load angular-touch as well.</li>
+                        <li>
+                            <a href="http://getbootstrap.com" target="_blank">Bootstrap CSS</a> (tested with version 4.1.3).
+                            This version of the library (4.0.0) works only with Bootstrap CSS in version 4.x.x
                         </li>
                     </ul>
                     <h3>Files to download</h3>
                     <p>
                         Build files for all directives are distributed in several flavours: minified for production usage, un-minified
                         for development, with or without templates. All the options are described and can be
-                        <a href="https://github.com/angular-ui/bootstrap/tree/gh-pages">downloaded from here</a>. It should be noted that the <code>-tpls</code> files contain the templates bundled in JavaScript, while the regular version does not contain the bundled templates. For more information, check out the FAQ <a href="https://github.com/angular-ui/bootstrap/wiki/FAQ#full-explanation">here</a> and the README <a href="https://github.com/angular-ui/bootstrap/tree/gh-pages#build-files">here</a>.
+                        <a href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/docs">downloaded from here</a>. It should be noted that the <code>-tpls</code> files contain the templates bundled in JavaScript, while the regular version does not contain the bundled templates. For more information, check out the FAQ <a href="https://github.com/krysvac/ui-bootstrap4-fixed/blob/master/README.md#faq">here</a> and the README <a href="https://github.com/krysvac/ui-bootstrap4-fixed/blob/master/docs/README.md">here</a>.
                     </p>
-                    <p>Alternativelly, if you are only interested in a subset of directives, you can
-                        <a ng-click="showBuildModal()">create your own build</a>.
+                    <p>Alternatively, if you are only interested in a subset of directives, you can
+                        <a href="javascript:void(0);" ng-click="showBuildModal()">create your own build</a>.
                     </p>
-                    <p>Whichever method you choose the good news that the overall size of a download is fairly small:
-                       122K minified for all directives with templates and 98K without (~31kB with gzip
+                    <p>Whichever method you choose, the good news are that the overall size of a download is fairly small;
+                       122K Minified for all directives with templates and 98K without (~31kB with gzip
                         compression, with templates, and 28K gzipped without)</p>
                     <h3>Installation</h3>
                     <p>As soon as you've got all the files downloaded and included in your page you just need to declare
@@ -147,33 +136,34 @@
                        <pre><code>angular.module('myModule', ['ui.bootstrap']);</code></pre>
                     </p>
                     <p>If you are using UI Bootstrap in the CSP mode, e.g. in an extension, make sure you link to the <code>ui-bootstrap-csp.css</code> in your HTML manually.</p>
-                    <p>You can fork one of the plunkers from this page to see a working example of what is described here.</p>
-                    <h3>Migration to prefixes</h3>
-                    <p>Since version 0.14.0 we started to prefix all our components. If you are upgrading from ui-bootstrap 0.13.4 or earlier,
-                    check our <a href="https://github.com/angular-ui/bootstrap/wiki/Migration-guide-for-prefixes">migration guide</a>.</p>
+                    <p>You can try one of the plunkers from this page to see a working example of what is described here.</p>
                     <h3>CSS</h3>
                     <p>Original Bootstrap's CSS depends on empty <code>href</code> attributes to style cursors for several components (pagination, tabs etc.).
                     But in AngularJS adding empty <code>href</code> attributes to link tags will cause unwanted route changes. This is why we need to remove empty <code>href</code> attributes from directive templates and as a result styling is not applied correctly. The remedy is simple, just add the following styling to your application: <pre><code>.nav, .pagination, .carousel, .card-title a { cursor: pointer; }</code></pre>
                     </p>
                     <h3>FAQ</h3>
-                    <p>Please check <a href="https://github.com/angular-ui/bootstrap/wiki/FAQ" target="_blank">our FAQ section</a> for common problems / solutions.</p>
+                    <p>Please check <a href="https://github.com/krysvac/ui-bootstrap4-fixed/blob/master/README.md#faq" target="_blank">our FAQ section</a> for common problems / solutions.</p>
                     <h3>Reading the documentation</h3>
                     <p>
-                        Each of the components provided in <code>ui-bootstrap</code> have documentation and interactive Plunker examples.
+                        Each of the components provided in <code>ui-bootstrap4-fixed</code> have documentation and interactive Plunker examples.
                     </p>
                     <p>
                         For the directives, we list the different attributes with their default values. In addition to this, some settings have a badge on it:
 
                         <ul>
                             <li>
-                                <i class="fa-svg-icon">
-                                    <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z"/></svg>
-                                </i>
+                                <i class="far fa-eye"></i>
                                 - This setting has an angular $watch listener applied to it.
                             </li>
-                            <li><small class="badge">B</small> - This setting is a boolean. It doesn't need a parameter.</li>
-                            <li><small class="badge">C</small> - This setting can be configured globally in a constant service*.</li>
-                            <li><small class="badge">$</small> - This setting expects an angular expression instead of a literal string. If the expression support a boolean / integer, you can pass it directly.</li>
+                            <li>
+                                <small class="badge">B</small> - This setting is a boolean. It doesn't need a parameter.
+                            </li>
+                            <li>
+                                <small class="badge">C</small> - This setting can be configured globally in a constant service*.
+                            </li>
+                            <li>
+                                <small class="badge">$</small> - This setting expects an angular expression instead of a literal string. If the expression support a boolean / integer, you can pass it directly.
+                            </li>
                             <li><small class="badge">readonly</small> - This setting is readonly.</li>
                         </ul>
                     </p>
@@ -187,9 +177,11 @@
                 
                     <section id="accordion">
                         <div class="page-header">
-                          <h1>Accordion<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/accordion">ui.bootstrap.accordion</a>)
-                          </small></h1>
+                          <h1>Accordion
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/accordion">ui.bootstrap.accordion</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -315,9 +307,7 @@ Add the ability to override the template used on the component.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'accordion')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -461,9 +451,11 @@ Add the ability to override the template used on the component.</p>
                 
                     <section id="alert">
                         <div class="page-header">
-                          <h1>Alert<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/alert">ui.bootstrap.alert</a>)
-                          </small></h1>
+                          <h1>Alert
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/alert">ui.bootstrap.alert</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -505,9 +497,7 @@ Add the ability to override the template used in the component.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'alert')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -569,9 +559,11 @@ Add the ability to override the template used in the component.</p>
                 
                     <section id="buttons">
                         <div class="page-header">
-                          <h1>Buttons<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/buttons">ui.bootstrap.buttons</a>)
-                          </small></h1>
+                          <h1>Buttons
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/buttons">ui.bootstrap.buttons</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -671,9 +663,7 @@ Event used to toggle the buttons.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'buttons')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -774,9 +764,11 @@ Event used to toggle the buttons.</p>
                 
                     <section id="carousel">
                         <div class="page-header">
-                          <h1>Carousel<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/carousel">ui.bootstrap.carousel</a>)
-                          </small></h1>
+                          <h1>Carousel
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/carousel">ui.bootstrap.carousel</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -877,9 +869,7 @@ Add the ability to override the template used on the component.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'carousel')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -1049,9 +1039,11 @@ Add the ability to override the template used on the component.</p>
                 
                     <section id="collapse">
                         <div class="page-header">
-                          <h1>Collapse<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/collapse">ui.bootstrap.collapse</a>)
-                          </small></h1>
+                          <h1>Collapse
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/collapse">ui.bootstrap.collapse</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -1155,9 +1147,7 @@ An optional attribute that permit to collapse horizontally.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'collapse')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -1243,9 +1233,11 @@ An optional attribute that permit to collapse horizontally.</p>
                 
                     <section id="dateparser">
                         <div class="page-header">
-                          <h1>Dateparser<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/dateparser">ui.bootstrap.dateparser</a>)
-                          </small></h1>
+                          <h1>Dateparser
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/dateparser">ui.bootstrap.dateparser</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -1414,9 +1406,7 @@ Parses the long form of the era (<code>Anno Domini</code> or <code>Before Christ
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dateparser')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -1458,9 +1448,11 @@ Parses the long form of the era (<code>Anno Domini</code> or <code>Before Christ
                 
                     <section id="datepicker">
                         <div class="page-header">
-                          <h1>Datepicker<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/datepicker">ui.bootstrap.datepicker</a>)
-                          </small></h1>
+                          <h1>Datepicker
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/datepicker">ui.bootstrap.datepicker</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -1667,9 +1659,7 @@ Number of columns displayed in year selection.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepicker')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -1857,9 +1847,11 @@ Number of columns displayed in year selection.</p>
                 
                     <section id="datepickerPopup">
                         <div class="page-header">
-                          <h1>Datepicker Popup<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/datepickerPopup">ui.bootstrap.datepickerPopup</a>)
-                          </small></h1>
+                          <h1>Datepicker Popup
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/datepickerPopup">ui.bootstrap.datepickerPopup</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -2046,9 +2038,7 @@ The format for displayed dates. This string can take string literals by surround
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepickerPopup')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -2331,9 +2321,11 @@ The format for displayed dates. This string can take string literals by surround
                 
                     <section id="dropdown">
                         <div class="page-header">
-                          <h1>Dropdown<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/dropdown">ui.bootstrap.dropdown</a>)
-                          </small></h1>
+                          <h1>Dropdown
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/dropdown">ui.bootstrap.dropdown</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -2570,9 +2562,7 @@ Class to apply when the dropdown is open.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dropdown')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -2799,9 +2789,11 @@ Class to apply when the dropdown is open.</p>
                 
                     <section id="modal">
                         <div class="page-header">
-                          <h1>Modal<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/modal">ui.bootstrap.modal</a>)
-                          </small></h1>
+                          <h1>Modal
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/modal">ui.bootstrap.modal</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -3018,9 +3010,7 @@ Also, the <code>$close</code> and <code>$dismiss</code> methods returns true if 
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'modal')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -3342,9 +3332,11 @@ angular.module('ui.bootstrap.demo').component('modalComponent', {
                 
                     <section id="pager">
                         <div class="page-header">
-                          <h1>Pager<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/pager">ui.bootstrap.pager</a>)
-                          </small></h1>
+                          <h1>Pager
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/pager">ui.bootstrap.pager</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -3416,9 +3408,7 @@ Total number of items in all pages.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pager')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -3454,9 +3444,11 @@ Total number of items in all pages.</p>
                 
                     <section id="pagination">
                         <div class="page-header">
-                          <h1>Pagination<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/pagination">ui.bootstrap.pagination</a>)
-                          </small></h1>
+                          <h1>Pagination
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/pagination">ui.bootstrap.pagination</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -3606,9 +3598,7 @@ Total number of items in all pages.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pagination')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -3698,9 +3688,11 @@ Total number of items in all pages.</p>
                 
                     <section id="popover">
                         <div class="page-header">
-                          <h1>Popover<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/popover">ui.bootstrap.popover</a>)
-                          </small></h1>
+                          <h1>Popover
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/popover">ui.bootstrap.popover</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -3892,9 +3884,7 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'popover')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -4033,9 +4023,11 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                 
                     <section id="position">
                         <div class="page-header">
-                          <h1>Position<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/position">ui.bootstrap.position</a>)
-                          </small></h1>
+                          <h1>Position
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/position">ui.bootstrap.position</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -4403,9 +4395,7 @@ The placement for the element.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'position')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -4517,9 +4507,11 @@ The placement for the element.</p>
                 
                     <section id="progressbar">
                         <div class="page-header">
-                          <h1>Progressbar<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/progressbar">ui.bootstrap.progressbar</a>)
-                          </small></h1>
+                          <h1>Progressbar
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/progressbar">ui.bootstrap.progressbar</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -4651,9 +4643,7 @@ Title to use as label (for accessibility).</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'progressbar')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -4796,9 +4786,11 @@ Title to use as label (for accessibility).</p>
                 
                     <section id="rating">
                         <div class="page-header">
-                          <h1>Rating<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/rating">ui.bootstrap.rating</a>)
-                          </small></h1>
+                          <h1>Rating
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/rating">ui.bootstrap.rating</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -4891,9 +4883,7 @@ A variable used in the template to specify the state for unselected icons.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'rating')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -4973,9 +4963,11 @@ A variable used in the template to specify the state for unselected icons.</p>
                 
                     <section id="tabs">
                         <div class="page-header">
-                          <h1>Tabs<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/tabs">ui.bootstrap.tabs</a>)
-                          </small></h1>
+                          <h1>Tabs
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/tabs">ui.bootstrap.tabs</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -5140,9 +5132,7 @@ A URL representing the location of a template to use for the tab heading.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tabs')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -5284,9 +5274,11 @@ A URL representing the location of a template to use for the tab heading.</p>
                 
                     <section id="timepicker">
                         <div class="page-header">
-                          <h1>Timepicker<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/timepicker">ui.bootstrap.timepicker</a>)
-                          </small></h1>
+                          <h1>Timepicker
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/timepicker">ui.bootstrap.timepicker</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -5435,9 +5427,7 @@ Add the ability to override the template used on the component.</p>
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'timepicker')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -5547,9 +5537,11 @@ Add the ability to override the template used on the component.</p>
                 
                     <section id="tooltip">
                         <div class="page-header">
-                          <h1>Tooltip<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/tooltip">ui.bootstrap.tooltip</a>)
-                          </small></h1>
+                          <h1>Tooltip
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/tooltip">ui.bootstrap.tooltip</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -5759,9 +5751,7 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tooltip')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -5911,9 +5901,11 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                 
                     <section id="typeahead">
                         <div class="page-header">
-                          <h1>Typeahead<small>
-                              (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/typeahead">ui.bootstrap.typeahead</a>)
-                          </small></h1>
+                          <h1>Typeahead
+                              <small>
+                                  (<a target="_blank" href="https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/src/typeahead">ui.bootstrap.typeahead</a>
+                              </small>
+                          </h1>
                           </div>
                           <div class="row">
                             <div class="col-md-6 show-grid">
@@ -6150,9 +6142,7 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'typeahead')">
-                                        <i class="fa-svg-icon">
-                                            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M888 1184l116-116-152-152-116 116v56h96v96h56zm440-720q-16-16-33 1l-350 350q-17 17-1 33t33-1l350-350q17-17 1-33zm80 594v190q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-14 14-32 8-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-126q0-13 9-22l64-64q15-15 35-7t20 29zm-96-738l288 288-672 672h-288v-288zm444 132l-92 92-288-288 92-92q28-28 68-28t68 28l152 152q28 28 28 68t-28 68z"/></svg>
-                                        </i>
+                                        <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
                                 </div>
@@ -6544,9 +6534,10 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
 </div><!-- /.main -->
 <footer class="footer">
     <div class="container">
-        <p>Designed and built by all ui-bootstrap <a href="https://github.com/angular-ui/bootstrap/graphs/contributors" target="_blank">contributors</a>.</p>
-        <p>Code licensed under <a href="https://github.com/angular-ui/bootstrap/blob/master/LICENSE">MIT License</a>.</p>
-        <p><a href="https://github.com/angular-ui/bootstrap/issues?state=open">Issues</a></p>
+        <p>Designed and built by angular-ui-bootstrap <a href="https://github.com/angular-ui/bootstrap/graphs/contributors" target="_blank">contributors</a>.</p>
+        <p>Ported to Bootstrap 4 by <a href="https://github.com/Morgul">Morgul</a> and later updated by <a href="https://github.com/krysvac">krysvac</a></p>
+        <p>Code licensed under <a href="https://github.com/krysvac/ui-bootstrap4-fixed/blob/master/LICENSE">MIT License</a>.</p>
+        <p><a href="https://github.com/krysvac/ui-bootstrap4-fixed/issues?state=open">Issues</a></p>
     </div>
 </footer>
 <script src="assets/rainbow.js"></script>
@@ -6554,7 +6545,7 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
 <script src="assets/rainbow-javascript.js"></script>
 <script src="assets/rainbow-html.js"></script>
 <script type="text/ng-template" id="downloadModal.html">
-    <div class="modal-header"><h4 class="modal-title">Download Angular UI Bootstrap</h4></div>
+    <div class="modal-header"><h4 class="modal-title">Download UI Bootstrap</h4></div>
     <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group row">
@@ -6564,7 +6555,7 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
                 <button type="button" class="btn btn-secondary" ng-model="options.minified" uib-btn-radio="true">Minified</button>
                 <button type="button" class="btn btn-secondary" ng-model="options.minified" uib-btn-radio="false">Uncompressed</button>
               </span>
-              <small class="form-text">Use <b>Minified</b> version in your deployed application. <b>Uncompressed</b> source code is useful only for debugging and development purpose.</small>
+              <small class="form-text">Use <b>Minified</b> version in your deployed application. <b>Uncompressed</b> source code is useful only for debugging and development purposes.</small>
             </div>
           </div>
           <div class="form-group row">
@@ -6580,7 +6571,7 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
           <div class="form-group row">
             <label class="col-sm-3 control-label text-right"><strong>npm</strong></label>
             <div class="col-sm-9">
-              <pre style="margin-bottom:0;">npm install ui-bootstrap4</pre>
+              <pre style="margin-bottom:0;">npm install ui-bootstrap4-fixed</pre>
               <small class="form-text"><a href="https://www.npmjs.com/" target="_blank">npm</a> is a package manager for the web.</small>
             </div>
           </div>
@@ -6589,22 +6580,18 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
     <div class="modal-footer">
         <button class="btn btn-secondary" ng-click="cancel()">Close</button>
         <a class="btn btn-primary" ng-href="{{download('4.0.0')}}" download>
-            <i class="fa-svg-icon">
-                <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1344 1344q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h465l135 136q58 56 136 56t136-56l136-136h464q40 0 68 28t28 68zm-325-569q17 41-14 70l-448 448q-18 19-45 19t-45-19l-448-448q-31-29-14-70 17-39 59-39h256v-448q0-26 19-45t45-19h256q26 0 45 19t19 45v448h256q42 0 59 39z"/>
-                </svg>
-            </i>
+            <i class="fas fa-download"></i>
             Download 4.0.0
         </a>
     </div>
 </script>
 <script type="text/ng-template" id="buildModal.html">
     <div class="modal-header">
-      <h4>
-      Create a Custom Build
-      <br>
-      <small>Select the modules you wish to download</small>
-      </h4>
+        <h4>
+            Create a Custom Build
+            <br>
+            <small>Select the modules you wish to download</small>
+        </h4>
     </div>
     <div class="modal-body">
         <div ng-show="isOldBrowser()">
@@ -6957,11 +6944,7 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
         <button class="btn btn-primary" ng-hide="isOldBrowser()"
             ng-disabled="isOldBrowser() !== false && !selectedModules.length"
             ng-click="selectedModules.length && build(selectedModules, '4.0.0')">
-            <i class="fa-svg-icon">
-                <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1344 1344q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h465l135 136q58 56 136 56t136-56l136-136h464q40 0 68 28t28 68zm-325-569q17 41-14 70l-448 448q-18 19-45 19t-45-19l-448-448q-31-29-14-70 17-39 59-39h256v-448q0-26 19-45t45-19h256q26 0 45 19t19 45v448h256q42 0 59 39z"/>
-                </svg>
-            </i>
+            <i class="fas fa-download"></i>
             Download {{selectedModules.length}} Modules
         </button>
     </div>
