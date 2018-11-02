@@ -1379,9 +1379,10 @@ describe('datepicker popup', function() {
     });
 
     describe('with an append-to-body attribute', function() {
-        beforeEach(function() {
+        beforeEach(inject(function(_$document_) {
+            $document = _$document_;
             $rootScope.date = new Date();
-        });
+        }));
 
         afterEach(function() {
             $document.find('body').children().remove();
