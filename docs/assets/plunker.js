@@ -2,8 +2,11 @@ angular.module('plunker', [])
 
     .factory('plunkGenerator', function($document) {
 
-        return function(ngVersion, bsVersion, version, module, content) {
+        const accountName = 'krysvac';
+        const accountUrl = accountName + '.github.io';
+        const repoName = 'ui-bootstrap4-fixed';
 
+        return function(ngVersion, bsVersion, version, module, content) {
             var form = angular.element('<form style="display: none;" method="post" action="https://plnkr.co/edit/?p=preview" target="_blank"></form>');
             var addField = function(name, value) {
                 var input = angular.element('<input type="hidden" name="' + name + '">');
@@ -18,7 +21,7 @@ angular.module('plunker', [])
                     '    <script src="//ajax.googleapis.com/ajax/libs/angularjs/' + ngVersion + '/angular.js"></script>\n' +
                     '    <script src="//ajax.googleapis.com/ajax/libs/angularjs/' + ngVersion + '/angular-animate.js"></script>\n' +
                     '    <script src="//ajax.googleapis.com/ajax/libs/angularjs/' + ngVersion + '/angular-sanitize.js"></script>\n' +
-                    '    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-' + version + '.js"></script>\n' +
+                    '    <script src="//' + accountUrl + '/' + repoName + '/ui-bootstrap-tpls-' + version + '.js"></script>\n' +
                     '    <script src="example.js"></script>\n' +
                     '    <link href="//netdna.bootstrapcdn.com/bootstrap/' + bsVersion + '/css/bootstrap.min.css" rel="stylesheet">\n' +
                     '  </head>\n' +
@@ -32,7 +35,7 @@ angular.module('plunker', [])
                 return 'angular.module(\'ui.bootstrap.demo\', [\'ngAnimate\', \'ngSanitize\', \'ui.bootstrap\']);' + '\n' + content;
             };
 
-            addField('description', 'http://angular-ui.github.io/bootstrap/');
+            addField('description', 'http://' + accountUrl + '/' + repoName + '/');
             addField('files[index.html]', indexContent(content.markup, version));
             addField('files[example.js]', scriptContent(content.javascript));
 
@@ -43,7 +46,6 @@ angular.module('plunker', [])
     })
 
     .controller('PlunkerCtrl', function($scope, plunkGenerator) {
-
         $scope.content = {};
 
         $scope.edit = function(ngVersion, bsVersion, version, module) {
