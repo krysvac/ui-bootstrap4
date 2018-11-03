@@ -431,13 +431,13 @@ module.exports = function(grunt) {
                 version = version.replace(/^v/, '');
                 return {
                     version: version,
-                    url: `/angular-ui-bootstrap4/versioned-docs/${version}`
+                    url: grunt.config('reponame') + `/versioned-docs/${version}`
                 };
             });
             jsContent = _.sortBy(jsContent, 'version').reverse();
             jsContent.unshift({
                 version: 'Current',
-                url: '/angular-ui-bootstrap4'
+                url: '/' + grunt.config('reponame')
             });
             grunt.file.write(versionsMappingFile, JSON.stringify(jsContent));
             grunt.log.writeln(`File ${versionsMappingFile.cyan} created.`);
