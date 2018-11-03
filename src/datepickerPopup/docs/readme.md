@@ -1,8 +1,8 @@
-The datepicker popup is meant to be used with an input element. To understand usage of the datepicker, please refer to its documentation [here](https://angular-ui.github.io/bootstrap/#/datepicker).
+The datepicker popup is meant to be used with an input element. To understand usage of the datepicker, please refer to its documentation.
 
 ### uib-datepicker-popup settings
 
-The popup is a wrapper that you can use in an input to toggle a datepicker. To configure the datepicker, use `datepicker-options` as documented in the [inline datepicker](https://angular-ui.github.io/bootstrap/#/datepicker).
+The popup is a wrapper that you can use in an input to toggle a datepicker. To configure the datepicker, use `datepicker-options` as documented in the datepicker's documentation.
 
 * `alt-input-formats`
 <small class="badge">$</small>
