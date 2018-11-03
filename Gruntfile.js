@@ -431,7 +431,7 @@ module.exports = function(grunt) {
                 version = version.replace(/^v/, '');
                 return {
                     version: version,
-                    url: grunt.config('reponame') + `/versioned-docs/${version}`
+                    url: `versioned-docs/${version}`
                 };
             });
             jsContent = _.sortBy(jsContent, 'version').reverse();
