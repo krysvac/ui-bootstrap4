@@ -49,7 +49,8 @@ angular.module('ui.bootstrap.demo', ['ui.bootstrap', 'plunker', 'ngTouch', 'ngAn
 function MainCtrl($scope, $http, $document, $uibModal) {
     $scope.isCollapsed = true;
 
-    const versionsMappingUrl = '/docs/versions-mapping.json';
+    const repoName = 'ui-bootstrap4-fixed';
+    const versionsMappingUrl = '/' + repoName + '/versions-mapping.json';
     // Grab old version docs
     $http.get(versionsMappingUrl)
         .then(function(result) {
