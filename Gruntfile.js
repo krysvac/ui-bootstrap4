@@ -10,15 +10,17 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         ngversion: '1.6.1',
-        bsversion: '4.1.3',
+        bsversion: '4.1.3', // the bootstrap version
         modules: [], // to be filled in by build task
         pkg: grunt.file.readJSON('package.json'),
         dist: 'dist',
         filename: 'ui-bootstrap',
         filenamecustom: '<%= filename %>-custom',
+
         reponame: 'ui-bootstrap4-fixed',
         accountname: 'krysvac',
         pathToDocsFolder: 'tree/master/docs',
+
         meta: {
             modules: 'angular.module("ui.bootstrap", [<%= srcModules %>]);',
             tplmodules: 'angular.module("ui.bootstrap.tpls", [<%= tplModules %>]);',
@@ -186,7 +188,7 @@ module.exports = function(grunt) {
                 'git add docs'
             ],
             'release-complete': [
-                'git commit -a -m "chore(release): v%version%"',
+                'git commit -a -m "Release: v%version%"',
                 'git tag v%version%',
                 'git push --follow-tags'
             ],
@@ -210,19 +212,200 @@ module.exports = function(grunt) {
     grunt.registerTask('before-test', ['eslint', 'html2js']);
     grunt.registerTask('after-test', ['build', 'copy']);
 
+    // Default task.
+    grunt.registerTask('default', ['before-test', 'test', 'after-test']);
+
     // Rename our watch task to 'delta', then make actual 'watch'
     // task build things, then start test server
     grunt.renameTask('watch', 'delta');
     grunt.registerTask('watch', ['before-test', 'after-test', 'karma:watch', 'delta']);
 
-    // Default task.
-    grunt.registerTask('default', ['before-test', 'test', 'after-test']);
-
     // Build docs
     grunt.registerTask('docs', ['before-test', 'after-test', 'copy:docs']);
 
-    // Common ui.bootstrap module containing all modules for src and templates
-    // findModule: Adds a given module to config
+    grunt.registerTask('test', 'Run tests on singleRun karma server', function() {
+        // this task can be executed in 3 different environments: local, Travis-CI and Jenkins-CI
+        // we need to take settings for each one into account
+        if (process.env.TRAVIS) {
+            grunt.task.run('karma:travis');
+        } else {
+            if (grunt.option('coverage')) {
+                const karmaOptions = grunt.config.get('karma.options');
+
+                const coverageOpts = grunt.config.get('karma.coverage');
+                grunt.util._.extend(karmaOptions, coverageOpts);
+                grunt.config.set('karma.options', karmaOptions);
+            }
+            grunt.task.run(this.args.length ? 'karma:jenkins' : 'karma:continuous');
+        }
+    });
+
+    grunt.registerTask('release', function(version) {
+        // Step 1, we change package.json
+        grunt.config.set('pkg.version', version);
+        grunt.file.write('./package.json', JSON.stringify(grunt.config('pkg'), null, 2));
+
+        // Step 2, we queue up additional tasks
+        grunt.task.run([
+            'conventionalChangelog',
+            'html2js',
+            'build',
+            'copy',
+            'shell:release-prepare',
+            'shell:release-complete',
+            'shell:publish'
+        ]);
+    });
+
+    /**
+     *
+     * Below here are internal tasks that you don't really need to run manually, since they are run elsewhere automatically.
+     *
+     */
+
+    grunt.registerTask('dist', 'Override dist directory', function() {
+        const dir = this.args[0];
+        if (dir) {
+            grunt.config('dist', dir);
+        }
+    });
+
+    grunt.registerTask('build', 'Create bootstrap build files', function() {
+        // If arguments define what modules to build, build those. Else, everything
+        if (this.args.length) {
+            this.args.forEach(findModule);
+            grunt.config('filename', grunt.config('filenamecustom'));
+        } else {
+            grunt.file.expand({
+                filter: 'isDirectory', cwd: '.'
+            }, 'src/*').forEach((dir) => {
+                findModule(dir.split('/')[1]);
+            });
+        }
+
+        const modules = grunt.config('modules');
+        const demoModules = _.cloneDeep(modules);
+
+        grunt.config('srcModules', _.map(modules, 'moduleName'));
+        grunt.config('tplModules', _.map(modules, 'tplModules').filter((tpls) => tpls.length > 0));
+        grunt.config('demoModules', demoModules
+            .filter((mod) => mod.docs.md && mod.docs.js && mod.docs.html)
+            .sort((a, b) => {
+                if (a.name < b.name) {
+                    return -1;
+                }
+                if (a.name > b.name) {
+                    return 1;
+                }
+                return 0;
+            })
+        );
+
+        const cssStrings = _.flatten(_.compact(_.map(modules, 'css')));
+        const cssJsStrings = _.flatten(_.compact(_.map(modules, 'cssJs')));
+        if (cssStrings.length) {
+            grunt.config('meta.cssInclude', cssJsStrings.join('\n'));
+
+            grunt.file.write(grunt.config('meta.cssFileDest'), grunt.config('meta.cssFileBanner') +
+                cssStrings.join('\n'));
+
+            grunt.log.writeln('File ' + grunt.config('meta.cssFileDest') + ' created');
+        }
+
+        const moduleFileMapping = _.cloneDeep(modules);
+        moduleFileMapping.forEach((module) => delete module.docs);
+
+        grunt.config('moduleFileMapping', moduleFileMapping);
+
+        const srcFiles = _.map(modules, 'srcFiles');
+        const tpljsFiles = _.map(modules, 'tpljsFiles');
+        // Set the concat task to concatenate the given src modules
+        grunt.config('concat.dist.src', grunt.config('concat.dist.src')
+            .concat(srcFiles));
+        // Set the concat-with-templates task to concat the given src & tpl modules
+        grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
+            .concat(srcFiles).concat(tpljsFiles));
+
+        grunt.task.run(['concat', 'uglify', 'makeModuleMappingFile', 'makeRawFilesJs', 'makeVersionsMappingFile']);
+    });
+
+    grunt.registerTask('makeModuleMappingFile', function() {
+        const _ = grunt.util._;
+        const moduleMappingJs = 'dist/assets/module-mapping.json';
+        const moduleMappings = grunt.config('moduleFileMapping');
+        const moduleMappingsMap = _.zipObject(_.map(moduleMappings, 'name'), moduleMappings);
+        const jsContent = JSON.stringify(moduleMappingsMap);
+        grunt.file.write(moduleMappingJs, jsContent);
+        grunt.log.writeln('File ' + moduleMappingJs.cyan + ' created.');
+    });
+
+    grunt.registerTask('makeRawFilesJs', function() {
+        const _ = grunt.util._;
+        const jsFilename = 'dist/assets/raw-files.json';
+        const genRawFilesJs = require('./misc/raw-files-generator');
+
+        genRawFilesJs(grunt, jsFilename, _.flatten(grunt.config('concat.dist_tpls.src')),
+            grunt.config('meta.banner'), grunt.config('meta.cssFileBanner')
+        );
+    });
+
+    grunt.registerTask('makeVersionsMappingFile', function() {
+        const done = this.async();
+
+        const exec = require('child_process').exec;
+
+        const versionsMappingFile = 'dist/versions-mapping.json';
+
+        exec('git tag --sort -version:refname', function(error, stdout) {
+            if (error) {
+                console.log(error.stack);
+            }
+
+            // Let's remove the oldest 14 versions.
+            const versions = stdout.split('\n').slice(0, -14);
+            let jsContent = versions.map(function(version) {
+                version = version.replace(/^v/, '');
+                return {
+                    version: version,
+                    url: `versioned-docs/${version}`
+                };
+            });
+            jsContent = _.sortBy(jsContent, 'version').reverse();
+            jsContent.unshift({
+                version: 'Current',
+                url: '/' + grunt.config('reponame')
+            });
+            grunt.file.write(versionsMappingFile, JSON.stringify(jsContent));
+            grunt.log.writeln(`File ${versionsMappingFile.cyan} created.`);
+            done();
+        });
+    });
+
+    grunt.registerTask('version', 'Set version. If no arguments, it just takes off suffix', function() {
+        setVersion(this.args[0], this.args[1]);
+    });
+
+    grunt.registerMultiTask('shell', 'run shell commands', function() {
+        const self = this;
+        const sh = require('shelljs');
+        self.data.forEach(function(cmd) {
+            cmd = cmd.replace('%version%', grunt.file.readJSON('package.json').version);
+            grunt.log.ok(cmd);
+            const result = sh.exec(cmd, {silent: true});
+            if (result.code !== 0) {
+                grunt.fatal(result.output);
+            }
+        });
+    });
+
+    /**
+     *
+     * Internal helper functions defined below
+     *
+     */
+
+    /* Common ui.bootstrap module containing all modules for src and templates
+       findModule: Adds a given module to config */
     const foundModules = {};
 
     function findModule(name) {
@@ -310,141 +493,6 @@ module.exports = function(grunt) {
         return deps;
     }
 
-    grunt.registerTask('dist', 'Override dist directory', function() {
-        const dir = this.args[0];
-        if (dir) {
-            grunt.config('dist', dir);
-        }
-    });
-
-    grunt.registerTask('build', 'Create bootstrap build files', function() {
-        // If arguments define what modules to build, build those. Else, everything
-        if (this.args.length) {
-            this.args.forEach(findModule);
-            grunt.config('filename', grunt.config('filenamecustom'));
-        } else {
-            grunt.file.expand({
-                filter: 'isDirectory', cwd: '.'
-            }, 'src/*').forEach((dir) => {
-                findModule(dir.split('/')[1]);
-            });
-        }
-
-        const modules = grunt.config('modules');
-        const demoModules = _.cloneDeep(modules);
-
-        grunt.config('srcModules', _.map(modules, 'moduleName'));
-        grunt.config('tplModules', _.map(modules, 'tplModules').filter((tpls) => tpls.length > 0));
-        grunt.config('demoModules', demoModules
-            .filter((mod) => mod.docs.md && mod.docs.js && mod.docs.html)
-            .sort((a, b) => {
-                if (a.name < b.name) {
-                    return -1;
-                }
-                if (a.name > b.name) {
-                    return 1;
-                }
-                return 0;
-            })
-        );
-
-        const cssStrings = _.flatten(_.compact(_.map(modules, 'css')));
-        const cssJsStrings = _.flatten(_.compact(_.map(modules, 'cssJs')));
-        if (cssStrings.length) {
-            grunt.config('meta.cssInclude', cssJsStrings.join('\n'));
-
-            grunt.file.write(grunt.config('meta.cssFileDest'), grunt.config('meta.cssFileBanner') +
-                cssStrings.join('\n'));
-
-            grunt.log.writeln('File ' + grunt.config('meta.cssFileDest') + ' created');
-        }
-
-        const moduleFileMapping = _.clone(modules, true);
-        moduleFileMapping.forEach((module) => delete module.docs);
-
-        grunt.config('moduleFileMapping', moduleFileMapping);
-
-        const srcFiles = _.map(modules, 'srcFiles');
-        const tpljsFiles = _.map(modules, 'tpljsFiles');
-        // Set the concat task to concatenate the given src modules
-        grunt.config('concat.dist.src', grunt.config('concat.dist.src')
-            .concat(srcFiles));
-        // Set the concat-with-templates task to concat the given src & tpl modules
-        grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
-            .concat(srcFiles).concat(tpljsFiles));
-
-        grunt.task.run(['concat', 'uglify', 'makeModuleMappingFile', 'makeRawFilesJs', 'makeVersionsMappingFile']);
-    });
-
-    grunt.registerTask('test', 'Run tests on singleRun karma server', function() {
-        // this task can be executed in 3 different environments: local, Travis-CI and Jenkins-CI
-        // we need to take settings for each one into account
-        if (process.env.TRAVIS) {
-            grunt.task.run('karma:travis');
-        } else {
-            if (grunt.option('coverage')) {
-                const karmaOptions = grunt.config.get('karma.options');
-
-                const coverageOpts = grunt.config.get('karma.coverage');
-                grunt.util._.extend(karmaOptions, coverageOpts);
-                grunt.config.set('karma.options', karmaOptions);
-            }
-            grunt.task.run(this.args.length ? 'karma:jenkins' : 'karma:continuous');
-        }
-    });
-
-    grunt.registerTask('makeModuleMappingFile', function() {
-        const _ = grunt.util._;
-        const moduleMappingJs = 'dist/assets/module-mapping.json';
-        const moduleMappings = grunt.config('moduleFileMapping');
-        const moduleMappingsMap = _.zipObject(_.map(moduleMappings, 'name'), moduleMappings);
-        const jsContent = JSON.stringify(moduleMappingsMap);
-        grunt.file.write(moduleMappingJs, jsContent);
-        grunt.log.writeln('File ' + moduleMappingJs.cyan + ' created.');
-    });
-
-    grunt.registerTask('makeRawFilesJs', function() {
-        const _ = grunt.util._;
-        const jsFilename = 'dist/assets/raw-files.json';
-        const genRawFilesJs = require('./misc/raw-files-generator');
-
-        genRawFilesJs(grunt, jsFilename, _.flatten(grunt.config('concat.dist_tpls.src')),
-            grunt.config('meta.banner'), grunt.config('meta.cssFileBanner')
-        );
-    });
-
-    grunt.registerTask('makeVersionsMappingFile', function() {
-        const done = this.async();
-
-        const exec = require('child_process').exec;
-
-        const versionsMappingFile = 'dist/versions-mapping.json';
-
-        exec('git tag --sort -version:refname', function(error, stdout) {
-            if (error) {
-                console.log(error.stack);
-            }
-
-            // Let's remove the oldest 14 versions.
-            const versions = stdout.split('\n').slice(0, -14);
-            let jsContent = versions.map(function(version) {
-                version = version.replace(/^v/, '');
-                return {
-                    version: version,
-                    url: `versioned-docs/${version}`
-                };
-            });
-            jsContent = _.sortBy(jsContent, 'version').reverse();
-            jsContent.unshift({
-                version: 'Current',
-                url: '/' + grunt.config('reponame')
-            });
-            grunt.file.write(versionsMappingFile, JSON.stringify(jsContent));
-            grunt.log.writeln(`File ${versionsMappingFile.cyan} created.`);
-            done();
-        });
-    });
-
     /**
      * Logic from AngularJS
      * https://github.com/angular/angular.js/blob/36831eccd1da37c089f2141a2c073a6db69f3e1d/lib/grunt/utils.js#L121-L145
@@ -499,46 +547,6 @@ module.exports = function(grunt) {
         grunt.file.write(file, contents);
         return version;
     }
-
-    grunt.registerTask('version', 'Set version. If no arguments, it just takes off suffix', function() {
-        setVersion(this.args[0], this.args[1]);
-    });
-
-    grunt.registerMultiTask('shell', 'run shell commands', function() {
-        const self = this;
-        const sh = require('shelljs');
-        self.data.forEach(function(cmd) {
-            cmd = cmd.replace('%version%', grunt.file.readJSON('package.json').version);
-            grunt.log.ok(cmd);
-            const result = sh.exec(cmd, {silent: true});
-            if (result.code !== 0) {
-                grunt.fatal(result.output);
-            }
-        });
-    });
-
-    // ----------------------------------------------------------------------------------------------------------------
-    // New Release System
-    // ----------------------------------------------------------------------------------------------------------------
-
-    grunt.registerTask('release', function(version) {
-        // Step 1, we change package.json
-        grunt.config.set('pkg.version', version);
-        grunt.file.write('./package.json', JSON.stringify(grunt.config('pkg'), null, 2));
-
-        // Step 2, we queue up additional tasks
-        grunt.task.run([
-            'conventionalChangelog',
-            'html2js',
-            'build',
-            'copy',
-            'shell:release-prepare',
-            'shell:release-complete',
-            'shell:publish'
-        ]);
-    });
-
-    // ----------------------------------------------------------------------------------------------------------------
 
     return grunt;
 };
