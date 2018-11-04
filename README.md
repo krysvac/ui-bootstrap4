@@ -4,6 +4,7 @@ _[AngularJS](http://angularjs.org/) directives specific to [Bootstrap 4](http://
 
 [![Build Status](https://travis-ci.org/krysvac/ui-bootstrap4-fixed.svg?branch=master)](https://travis-ci.org/krysvac/ui-bootstrap4-fixed)
 [![devDependencies Status](https://david-dm.org/krysvac/ui-bootstrap4-fixed/dev-status.svg)](https://david-dm.org/krysvac/ui-bootstrap4-fixed?type=dev)
+[![npm version](https://badge.fury.io/js/ui-bootstrap4-fixed.svg)](https://badge.fury.io/js/ui-bootstrap4-fixed)
 
 ## Fork
 
@@ -261,9 +262,10 @@ Pre-2.0.0 does not follow a particular versioning system. 2.0.0 and onwards foll
 
 ## Support
 
-### FAQ
+### More useful information
 
-
+[FAQ](https://github.com/angular-ui/bootstrap/wiki/FAQ)  
+[Development info](https://github.com/angular-ui/bootstrap/wiki/Development)
 
 ### Supported browsers
 
