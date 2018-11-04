@@ -20,37 +20,28 @@ This fork aims to further improve and cleanup the project to make it more easily
 [docs]: https://krysvac.github.io/ui-bootstrap4-fixed/docs/
 [docs-build]: https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/docs
 
-## Help Wanted
-
-I did this for a work project, and, frankly, we've gotten what we needed out of it. I'd love to see this cleaned up and maybe even maintained... but I just don't have the time myself. I'll accept merge requests, and fight with the build system... but that's basically it. If someone would like to step in, just let me know and I'll add you to the project. Just open an issue, and I'll respond.
-
-Wanting to contribute, but not take over the reigns? The things that are really holding this project back are, as I can see it:
-
-* [ ] Undocumented/confusing build system.
-    * [ ] The whole `SNAPSHOT` thing seems like it adds a lot of complexity, for very little gain.
-    * [ ] Making a release should be a single `npm` command
-    * [ ] Getting started with development should be very simple
-* [ ] Switch to ES2015
-    * [ ] The code should be cleaned up, and better formatted
-    
-I'll add more as I think of them / have the time.
-
 ## Quick links
+
 - [Demo](#demo)
 - [Installation](#installation)
     - [NPM](#install-with-npm)
     - [Custom](#custom-build)
     - [Manual](#manual-download)
 - [Webpack / JSPM](#webpack--jspm)
+- [Available grunt commands and short description](#available-grunt-commands-and-short-description)
+    - [The commands that matter](#the-commands-that-matter)
+    - [Building a release](#building-a-release)
+- [Files; Where they're located and what they do](#files-where-theyre-located-and-what-they-do)
+    - [Directives](#directives)
+        - [Templates for directives](#templates-for-directives)
+    - [Tests](#tests)
+    - [Documentation](#documentation)
+        - [Generation of documentation](#generation-of-documentation)
+- [Configurable values](#configurable-values)
+- [Versioning](#versioning)
 - [Support](#support)
     - [FAQ](#faq)
-    - [Code of Conduct](#code-of-conduct)
     - [Supported browsers](#supported-browsers)
-    - [Need help?](#need-help)
-    - [Found a bug?](#found-a-bug)
-- [Contributing to the project](#contributing-to-the-project)
-- [Development, meeting minutes, roadmap and more.](#development-meeting-minutes-roadmap-and-more)
-
 
 ## Demo
 
@@ -61,13 +52,16 @@ Do you want to see directives in action? Visit the [docs] page!
 Installation is easy as UI Bootstrap has minimal dependencies - only the AngularJS and Twitter Bootstrap's CSS are required.
 
 ### Module dependencies 
+
 * UI Bootstrap depends on [ngAnimate](https://docs.angularjs.org/api/ngAnimate) for transitions and animations, such as the accordion, carousel, etc. Include `ngAnimate` in the module dependencies for your app in order to enable animation.
 * UI Bootstrap depends on [ngTouch](https://docs.angularjs.org/api/ngTouch) for swipe actions. Include `ngTouch` in the module dependencies for your app in order to enable swiping.
 
 ### Angular Requirements
+
 * UI Bootstrap 1.0 and higher _requires_ Angular 1.4.x or higher and it has been tested with Angular 1.4.8.
 
 ### Bootstrap Requirements
+
 * UI Bootstrap 3.0 and higher _requires_ Bootstrap CSS version 4.x or higher and it has been tested with Bootstrap CSS 4.1.3
 
 #### Install with NPM
@@ -81,7 +75,6 @@ $ npm install ui-bootstrap4-fixed
 ```sh
 $ yarn add ui-bootstrap4-fixed
 ```
-
 
 #### Custom build
 
@@ -146,11 +139,131 @@ import typeahead from 'ui-bootstrap4-fixed/src/typeahead/index-nocss.js';
 angular.module('myModule', [accordion, typeahead]);
 ```
 
+## Available grunt commands and short description
+
+### Predefined helper tasks
+
+* `eslint` Runs ESLint on `Gruntfile.js` and all of the `.js` files in the `src` folder
+* `html2js` Converts the `.html` files in the `template` folder to javascript AngujarJS module template files
+* `before-test` Runs the `eslint` and `html2js` tasks
+* `build` Creates the required variables and files to build docs or make a release etc. 
+* `copy` Copies docs assets and files etc.
+* `after-test` Runs the `build` and `copy` tasks
+
+### The commands that matter
+
+* `grunt`
+
+    Default command. This runs the `before-test`, `test` and `after-test` tasks
+
+* `grunt test`
+
+    Runs the `test` task, which only executes the tests defined in the test-files. For more information see [Tests](#tests)
+
+* `grunt watch`
+
+    Watches your directive and template files, as well as the docs and continually rebuilds them
+
+* `grunt docs`
+
+    Rebuilds your docs - See [Documentation](#documentation) for more information.
+
+* `grunt release`
+ 
+    Creates a release - See [Building a release](#building-a-release) for more information
+
+### Building a release
+
+```
+grunt release:3.0.0
+```
+(Obviously, replace `3.0.0` with the version you're releasing.)
+
+This will build all of the docs and bundle everything together etc. It will add the docs to git, tag the commit and push it. After that it will build the project and publish to npm.
+
+## Files; Where they're located and what they do
+
+### Directives
+
+All of the directives are stored in the `src` folder in a folder named after the directive.
+
+To create a new directive you need two things in said folder (for this example the folder would be named `newDirective`):
+* An `index.js` file formatted like this:
+```js
+require('./newDirective');
+
+var MODULE_NAME = 'ui.bootstrap.module.newDirective';
+
+angular.module(MODULE_NAME, ['ui.bootstrap.newDirective']);
+
+module.exports = MODULE_NAME;
+```
+* The `.js` file containing an AngularJS module, named the same as the folder it resides in. For this example it would be named `newDirective.js`
+
+Aside from the index and directive files, you can have a `.css` file and an optional `index-nocss.js` file. Which, unsurprisingly, should not include any css-files.
+
+#### Templates for directives
+
+To add templates to your directive, create a folder named after your directive in the `template` folder.  
+
+Place one or more files named after the controller(s) that exist in your module in said folder.
+
+Controllers are named using `camelCase` in the code and the template files are named the same using `snake-case` with hyphens.
+
+### Tests
+
+The tests are located in `src/XXX/test/XXX.spec.js` and are run with karma and jasmine.  
+To run the tests you simply run the `grunt test` command.
+
+### Documentation
+
+The documentation for each directive is stored in its respective folder, i.e for _**accordion**_ it would be `src/accordion/docs`.  
+
+It consists of three files, a _**demo.html**_ view containing one or more examples, a _**demo.js**_ controller containing the logic, and a _**readme.md**_ file containing the documentation for that particular directive.  
+
+If a directive lacks one or more of these files, it won't be shown on the docs page.
+
+#### Main part
+
+The main part of the documentation comes from the files in the `misc/demo` folder. What you see on the docs page is based on the template file `index.html` and the controller(s) in the `assets/app.js` file.
+
+#### Generation of documentation
+
+To (re)generate the docs, perhaps after you've added a directive or updated some information, run the `grunt docs` command.
+
+## Configurable values
+
+For this project, there are several configurable values. Most of them don't need to be changed, however, there are a few files which contain values of interest.
+
+These files are:
+* `misc/demo/assets/app.js`
+
+    In this file, in the MainCtrl function, there are two variables, `repoName` and `versionsMappingUrl` used to generate the url to the `versions-mapping.json` file that the docs page uses.
+    
+* `misc/demo/assets/plunker.js`
+
+    This file contains three variables: `accountName`, `accountUrl` and `repoName`. These are used to generate the correct link to the template files when opening an example in plunker.
+    
+* `Gruntfile.js`
+
+    This file has a lot of variables. But the ones to note are: `reponame`, `accountname` and `pathToDocsFolder`.  
+    The two first variables are used to generate the correct links for various documents. The third one is used to create a correct link to the source code for the docs page using this format
+    
+    ```
+    https://github.com/<%= accountname %>/<%= reponame %>/<%= pathToDocsFolder %>
+    ```
+    
+    **It's important to note that all links generated are using github as the domain.**
+
 ## Versioning
 
 Pre-2.0.0 does not follow a particular versioning system. 2.0.0 and onwards follows [semantic versioning](http://semver.org/).
 
 ## Support
+
+### FAQ
+
+
 
 ### Supported browsers
 
@@ -162,15 +275,3 @@ Directives from this repository are automatically tested with the following brow
 * Safari
 
 Modern mobile browsers should work without problems.
-
-
-## Building a Release
-
-I've currently hacked out a solution, but the whole thing's very messy. For now, to build a release, just do:
-
-```
-$ grunt release:3.0.0
-```
-
-(Obviously, replace `3.0.0` with the version you're releasing.) That should build a correct release, and update the 
-docs, and everything.
