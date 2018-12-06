@@ -72,3 +72,4 @@ sbtcoverage
 coverage
 # Python tools
 *.pyc
+_site/
