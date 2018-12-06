@@ -329,3 +329,25 @@ section {
     }
 
 }
+
+a, a:hover {
+    color: black;
+}
+
+a[disabled] {
+    cursor: not-allowed;
+}
+
+a[disabled]:hover {
+    text-decoration: none;
+}
+
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 35px;
+    width: 65px;
+    height: 50px;
+    display: none;
+}

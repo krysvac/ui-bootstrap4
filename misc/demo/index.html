@@ -16,6 +16,8 @@
     <script src="ui-bootstrap-tpls-<%= pkg.version%>.min.js"></script>
     <script src="assets/plunker.js"></script>
     <script src="assets/app.js"></script>
+    <script src="assets/jquery-3.3.1.min.js"></script>
+    <script src="assets/scrollToTop.js"></script>
     <meta name="google-site-verification" content="Eg7m4119gBhUiI9xBxgIlZR7MY1CAZdcqOyOlnBiDVw" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/<%= bsversion %>/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/rainbow.css"/>
@@ -56,6 +58,9 @@
     </div>
 </header>
 <div role="main">
+    <button id="scrollToTop" type="button" class="btn btn-outline-dark btn-lg">
+        <i class="fas fa-chevron-up"></i>
+    </button>
     <header class="bs-header text-center" id="overview">
         <h1 class="text-center">UI Bootstrap 4</h1>
 
@@ -194,8 +199,8 @@
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('<%= ngversion%>', '<%= bsversion %>', '<%= pkg.version%>', '<%= module.name %>')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('<%= ngversion%>', '<%= bsversion %>', '<%= pkg.version%>', '<%= module.name %>')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>

@@ -16,6 +16,8 @@
     <script src="ui-bootstrap-tpls-4.0.0.min.js"></script>
     <script src="assets/plunker.js"></script>
     <script src="assets/app.js"></script>
+    <script src="assets/jquery-3.3.1.min.js"></script>
+    <script src="assets/scrollToTop.js"></script>
     <meta name="google-site-verification" content="Eg7m4119gBhUiI9xBxgIlZR7MY1CAZdcqOyOlnBiDVw" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/rainbow.css"/>
@@ -56,6 +58,9 @@
     </div>
 </header>
 <div role="main">
+    <button id="scrollToTop" type="button" class="btn btn-outline-dark btn-lg">
+        <i class="fas fa-chevron-up"></i>
+    </button>
     <header class="bs-header text-center" id="overview">
         <h1 class="text-center">UI Bootstrap 4</h1>
 
@@ -298,15 +303,15 @@ Add the ability to override the template used on the component.</p>
 <p>If you&#39;re using a custom template for the <code>uib-accordion-group</code>, you&#39;ll need to have an element for the heading to be transcluded into using <code>uib-accordion-header</code> (e.g. <code>&lt;div uib-accordion-header&gt;&lt;/div&gt;</code>).</p>
 <h3 id="known-issues">Known issues</h3>
 <p>To use clickable elements within the accordion, you have to override the accordion-group template to use div elements instead of anchor elements, and add <code>cursor: pointer</code> in your CSS. This is due to browsers interpreting anchor elements as the target of any click event, which triggers routing when certain elements such as buttons are nested inside the anchor element.</p>
-<p>If custom classes on the accordion-group element are desired, one needs to either modify the template to remove the <code>ng-class</code> usage in the accordion-group template and use ng-class on the accordion-group element (not recommended), or use an interpolated expression in the class attribute, i.e. <code>&lt;uib-accordion-group class=&quot;{{customClass()}}&quot;&gt;&lt;/uib-accordion-group&gt;</code>.</p>
+<p>If custom classes on the accordion-group element are desired, one needs to either modify the template to remove the <code>ng-class</code> usage in the accordion-group template and use ng-class on the accordion-group element (not recommended), or use an interpolated expression in the class attribute, i.e. <code>&lt;uib-accordion-group class=&quot;{{customClass}}&quot;&gt;&lt;/uib-accordion-group&gt;</code>.</p>
 
                             </div>
                         </div>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'accordion')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'accordion')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -495,8 +500,8 @@ Add the ability to override the template used in the component.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'alert')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'alert')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -661,8 +666,8 @@ Event used to toggle the buttons.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'buttons')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'buttons')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -867,8 +872,8 @@ Add the ability to override the template used on the component.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'carousel')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'carousel')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -1145,8 +1150,8 @@ An optional attribute that permit to collapse horizontally.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'collapse')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'collapse')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -1404,8 +1409,8 @@ Parses the long form of the era (<code>Anno Domini</code> or <code>Before Christ
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dateparser')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dateparser')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -1657,8 +1662,8 @@ Number of columns displayed in year selection.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepicker')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepicker')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -2036,8 +2041,8 @@ The format for displayed dates. This string can take string literals by surround
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepickerPopup')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'datepickerPopup')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -2560,8 +2565,8 @@ Class to apply when the dropdown is open.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dropdown')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'dropdown')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -3008,8 +3013,8 @@ Also, the <code>$close</code> and <code>$dismiss</code> methods returns true if 
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'modal')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'modal')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -3406,8 +3411,8 @@ Total number of items in all pages.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pager')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pager')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -3596,8 +3601,8 @@ Total number of items in all pages.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pagination')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'pagination')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -3882,8 +3887,8 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'popover')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'popover')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -4393,8 +4398,8 @@ The placement for the element.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'position')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'position')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -4641,8 +4646,8 @@ Title to use as label (for accessibility).</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'progressbar')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'progressbar')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -4881,8 +4886,8 @@ A variable used in the template to specify the state for unselected icons.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'rating')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'rating')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -5130,8 +5135,8 @@ A URL representing the location of a template to use for the tab heading.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tabs')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tabs')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -5425,8 +5430,8 @@ Add the ability to override the template used on the component.</p>
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'timepicker')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'timepicker')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -5749,8 +5754,8 @@ Provide a set of defaults for certain tooltip and popover attributes. Currently 
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tooltip')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'tooltip')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
@@ -6140,8 +6145,8 @@ Comprehension Angular expression (see <a href="http://docs.angularjs.org/api/ng.
                         <hr>
                         <div class="row code">
                             <div class="col-md-12" ng-controller="PlunkerCtrl">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'typeahead')">
+                                <div class="float-right" style="border-style: solid;border: none;border-bottom: 1px solid #cccccc;">
+                                    <button type="button" class="btn btn-info plunk-btn" ng-click="edit('1.6.1', '4.1.3', '4.0.0', 'typeahead')" style="margin-bottom: 3px">
                                         <i class="fas fa-edit"></i>
                                         Edit in plunker
                                     </button>
