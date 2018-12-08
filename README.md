@@ -18,7 +18,7 @@ This fork aims to further improve and cleanup the project to make it more easily
 [ui-bootstrap4]: https://github.com/morgul/ui-bootstrap4
 [angular-ui-bootstrap]: https://github.com/angular-ui/bootstrap
 [ui-bootstrap4-fixed]: https://github.com/krysvac/ui-bootstrap4-fixed
-[docs]: https://krysvac.github.io/ui-bootstrap4-fixed/docs/
+[docs]: https://krysvac.github.io/ui-bootstrap4-fixed
 [docs-build]: https://github.com/krysvac/ui-bootstrap4-fixed/tree/master/docs
 
 ## Quick links
@@ -209,11 +209,11 @@ To add templates to your directive, create a folder named after your directive i
 
 Place one or more files named after the controller(s) that exist in your module in said folder.
 
-Controllers are named using `camelCase` in the code and the template files are named the same using `snake-case` with hyphens.
+Controllers are named using _**camelCase**_ in the code and the template files are named the same using _**snake-case**_ with hyphens.
 
 ### Tests
 
-The tests are located in `src/XXX/test/XXX.spec.js` and are run with karma and jasmine.  
+The tests are located in `src/<directive>/test/<directive>.spec.js` and are run with karma and jasmine.  
 To run the tests you simply run the `grunt test` command.
 
 ### Documentation
