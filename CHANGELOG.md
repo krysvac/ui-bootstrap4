@@ -1,3 +1,8 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/krysvac/ui-bootstrap4-fixed/compare/v4.0.0...v4.0.1) (2018-12-08)
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/krysvac/ui-bootstrap4-fixed/compare/v3.0.5...v4.0.0) (2018-11-04)
 
