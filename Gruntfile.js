@@ -190,7 +190,8 @@ module.exports = function(grunt) {
             'release-complete': [
                 'git commit -a -m "Release: v%version%"',
                 'git tag v%version%',
-                'git push --follow-tags'
+                'git push --follow-tags',
+                'git push --tags'
             ],
             'publish': [
                 'rm -rf dist/*',
